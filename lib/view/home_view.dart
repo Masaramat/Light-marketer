@@ -65,8 +65,11 @@ class _HomePageViewState extends State<HomePageView> {
                               .loanList.data!.data[index].customerName
                               .toString()),
                           subtitle: Text(value
-                              .loanList.data!.data[index].loanFacility
-                              .toString()),
+                                  .loanList.data!.data[index].loanFacility
+                                  .toString() +
+                              "=> status: " +
+                              value.loanList.data!.data[index].applicationStatus
+                                  .toString()),
                         ),
                       ));
                 });

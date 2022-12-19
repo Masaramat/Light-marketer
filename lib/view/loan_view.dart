@@ -27,9 +27,10 @@ class _LoanApplicationState extends State<LoanApplication> {
 
   late var _number = "";
   late var _customerName = "";
+  late int _loanFacility = 0;
   late var _applicationDate = "";
   late var _tenor = "";
-  late var _applicationId = 0;
+  late int _applicationId = 0;
   late var _purpose = "";
   late var _business = "";
   late var _address = "";
@@ -43,7 +44,8 @@ class _LoanApplicationState extends State<LoanApplication> {
     final customerName = prefs.getString("customer_name") ?? "Hello";
     final applicationDate = prefs.getString("application_date") ?? "Hello";
     final tenor = prefs.getString("tenor") ?? "Hello";
-    final applicationId = prefs.getInt("application_id") ?? "Hello";
+    final applicationId = prefs.getInt("application_id") ?? 0;
+    final loanFacility = prefs.getInt("loan_facility") ?? 0;
     final purpose = prefs.getString("purpose") ?? "Hello";
     final business = prefs.getString("business") ?? "Hello";
     final address = prefs.getString("address") ?? "Hello";
@@ -60,8 +62,10 @@ class _LoanApplicationState extends State<LoanApplication> {
       _business = business;
       _address = address;
       _phoneNo = phoneNo;
+      _applicationId = applicationId;
       _bvn = bvn;
       _location = location;
+      _loanFacility = loanFacility;
     });
   }
 
@@ -112,6 +116,23 @@ class _LoanApplicationState extends State<LoanApplication> {
                             ),
                             Text(
                               _customerName,
+                              style: Theme.of(context).textTheme.headline6,
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            top: AppPadding.p12, left: AppPadding.p20),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Loan Amount: ",
+                              style: Theme.of(context).textTheme.headline6,
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              _loanFacility.toString(),
                               style: Theme.of(context).textTheme.headline6,
                               textAlign: TextAlign.left,
                             ),
@@ -261,6 +282,23 @@ class _LoanApplicationState extends State<LoanApplication> {
                         child: Row(
                           children: [
                             Text(
+                              "Application ID: ",
+                              style: Theme.of(context).textTheme.headline6,
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              _applicationId.toString(),
+                              style: Theme.of(context).textTheme.headline6,
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            top: AppPadding.p12, left: AppPadding.p20),
+                        child: Row(
+                          children: [
+                            Text(
                               "Location: ",
                               style: Theme.of(context).textTheme.headline6,
                               textAlign: TextAlign.left,
@@ -285,15 +323,14 @@ class _LoanApplicationState extends State<LoanApplication> {
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: AppSize.s12,
                             ),
                             RoundButton(
                               title: "Update Status",
                               onPressed: () {
-                                setState(() {
-                                  _makePhoneCall('tel:$_phoneNo');
-                                });
+                                Map data = {'application_id': _applicationId};
+                                loanViewModel.updateStatusApi(data, context);
                               },
                             ),
                           ],

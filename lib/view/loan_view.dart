@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:date_format/date_format.dart';
 
+import '../util/routes/route_name.dart';
 import '../view_model/loan_view_model.dart';
 
 class LoanApplication extends StatefulWidget {
@@ -328,9 +329,11 @@ class _LoanApplicationState extends State<LoanApplication> {
                             ),
                             RoundButton(
                               title: "Update Status",
+                              loading: loanViewModel.loading,
                               onPressed: () {
                                 Map data = {'application_id': _applicationId};
                                 loanViewModel.updateStatusApi(data, context);
+                                Navigator.pushNamed(context, RoutesName.main);
                               },
                             ),
                           ],

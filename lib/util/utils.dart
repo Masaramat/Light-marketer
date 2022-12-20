@@ -31,7 +31,7 @@ class Utils {
           borderRadius: BorderRadius.circular(20),
           reverseAnimationCurve: Curves.easeOut,
           icon: const Icon(
-            Icons.error,
+            Icons.info_outline,
             color: Colors.white,
           ),
           duration: const Duration(seconds: 3),

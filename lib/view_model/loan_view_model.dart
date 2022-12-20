@@ -6,7 +6,6 @@ import 'package:mvvm/repository/home_repository.dart';
 import 'package:mvvm/util/routes/route_name.dart';
 import 'package:mvvm/util/utils.dart';
 import 'package:mvvm/view_model/data_viewModel.dart';
-import 'package:mvvm/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../model/loan_model.dart';
@@ -64,9 +63,10 @@ class LoanViewModel with ChangeNotifier {
   Future<void> updateStatusApi(dynamic data, BuildContext context) async {
     setLoading(true);
     _myrepo.updateLoanStatus(data).then((value) {
-      setLoading(false);
-      if (value.status == 0) {
-        Utils.showFlushBarMessage(value.message.toString(), context);
+      print(value);
+      if (value['status'] == 0) {
+        Utils.showFlushBarMessage(value['message'], context);
+        setLoading(false);
       }
 
       if (kDebugMode) {}
@@ -74,8 +74,6 @@ class LoanViewModel with ChangeNotifier {
       setLoading(false);
       if (kDebugMode) {
         Utils.showFlushBarMessage(error.toString() + "here", context);
-
-        Navigator.pushNamed(context, RoutesName.main);
       }
     });
   }

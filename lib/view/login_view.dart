@@ -53,7 +53,8 @@ class _LoginViewState extends State<LoginView> {
               child: Form(
                   child: Column(
                 children: [
-                  const SizedBox(height: AppSize.s100),
+                  const Image(
+                      image: AssetImage(ImageAssets.splashLogoInternal)),
                   Padding(
                       padding: const EdgeInsets.only(
                           left: AppPadding.p28, right: AppPadding.p28),

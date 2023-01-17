@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm/data/response/status.dart';
+import 'package:mvvm/view/resources/color_manager.dart';
 import 'package:mvvm/view_model/home_view_model.dart';
 import 'package:mvvm/view_model/loan_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'resources/color_manager.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);
@@ -61,15 +63,22 @@ class _HomePageViewState extends State<HomePageView> {
                       }),
                       child: Card(
                         child: ListTile(
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            color: ColorManager.darkPrimary,
+                          ),
                           title: Text(value
                               .loanList.data!.data[index].customerName
                               .toString()),
-                          subtitle: Text(value
-                                  .loanList.data!.data[index].loanFacility
-                                  .toString() +
-                              "=> status: " +
-                              value.loanList.data!.data[index].applicationStatus
-                                  .toString()),
+                          subtitle: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(
+                                  "${value.loanList.data!.data[index].loanFacility} => status: ${value.loanList.data!.data[index].applicationStatus}",
+                                  style: const TextStyle(
+                                      color: Color.fromARGB(255, 27, 20, 20))),
+                            ],
+                          ),
                         ),
                       ));
                 });

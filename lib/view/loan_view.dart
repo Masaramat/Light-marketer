@@ -85,7 +85,7 @@ class _LoanApplicationState extends State<LoanApplication> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorManager.primary,
-          title: const Text("Loan Application"),
+          title: const Text("Loan Details"),
         ),
         body: ChangeNotifierProvider<LoanViewModel>(
             create: (BuildContext context) => LoanViewModel(),
@@ -95,219 +95,366 @@ class _LoanApplicationState extends State<LoanApplication> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: AppPadding.p8),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Loan Details",
-                          style: Theme.of(context).textTheme.headlineMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p28,
+                            left: AppPadding.p12,
+                            right: AppPadding.p20),
                         child: Row(
                           children: [
-                            Text(
-                              "Name: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _customerName,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.person,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Name: ",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                _customerName.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Loan Amount: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _loanFacility.toString(),
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.numbers,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Loan Amount:",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                _loanFacility.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Account Number: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _number,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.numbers_sharp,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Account No: ",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                _number.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Application date: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              formatDate(DateTime.parse(_applicationDate),
-                                  [dd, "-", mm, "-", yyyy]),
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.date_range_sharp,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "App date:",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                formatDate(DateTime.parse(_applicationDate),
+                                    [dd, "-", mm, "-", yyyy]),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Tenor: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _tenor,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.timelapse,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Tenor:",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                _tenor.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Purpose: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _purpose,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Business: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _business,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Address: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.star_border,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Purpose:",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
                             Flexible(
-                                child: Text(
-                              _address,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                              flex: 1,
+                              child: Text(
+                                _purpose.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            top: AppPadding.p24, left: AppPadding.p12),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: AppPadding.p8,
+                                          right: AppPadding.p8),
+                                      child: Icon(
+                                        Icons.cases,
+                                        color: ColorManager.darkPrimary,
+                                        size: AppSize.s28,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Business:",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )),
+                            Flexible(
+                              flex: 1,
+                              child: Text(
+                                _business.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            top: AppPadding.p24, left: AppPadding.p12),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: AppPadding.p8,
+                                      right: AppPadding.p8),
+                                  child: Icon(
+                                    Icons.location_city,
+                                    color: ColorManager.darkPrimary,
+                                    size: AppSize.s28,
+                                  ),
+                                ),
+                                Text(
+                                  "Address:",
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
                             )),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Phone Number: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _phoneNo,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Flexible(
+                              child: Text(
+                                _address.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "BVN: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _bvn,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: AppPadding.p8,
+                                      right: AppPadding.p8),
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: ColorManager.darkPrimary,
+                                    size: AppSize.s28,
+                                  ),
+                                ),
+                                Text(
+                                  "Phone Number:",
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            )),
+                            Flexible(
+                              child: Text(
+                                _phoneNo.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
                     Padding(
                         padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
+                            top: AppPadding.p24, left: AppPadding.p12),
                         child: Row(
                           children: [
-                            Text(
-                              "Application ID: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _applicationId.toString(),
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            top: AppPadding.p12, left: AppPadding.p20),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Location: ",
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              _location,
-                              style: Theme.of(context).textTheme.headline6,
-                              textAlign: TextAlign.left,
+                            Expanded(
+                                child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: AppPadding.p8,
+                                      right: AppPadding.p8),
+                                  child: Icon(
+                                    Icons.location_on_outlined,
+                                    color: ColorManager.darkPrimary,
+                                    size: AppSize.s28,
+                                  ),
+                                ),
+                                Text(
+                                  "Location:",
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            )),
+                            Flexible(
+                              child: Text(
+                                _location.toString(),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                textAlign: TextAlign.left,
+                              ),
                             ),
                           ],
                         )),
@@ -317,7 +464,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                         child: Row(
                           children: [
                             RoundButton(
-                              title: "Call Him",
+                              title: "Call Customer",
                               onPressed: () {
                                 setState(() {
                                   _makePhoneCall('tel:$_phoneNo');
